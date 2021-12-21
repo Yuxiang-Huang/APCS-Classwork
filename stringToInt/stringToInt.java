@@ -1,7 +1,12 @@
+import java.util.*;
+
 public class stringToInt{
   public static void main (String[] args){
     System.out.println(stringToInt("324876576"));
-    System.out.println(Integer.parseInt("324876576"));
+    System.out.println("324876576");
+    System.out.println(stringToInt("-324876576"));
+    System.out.println("-324876576");
+
     try{
       System.out.println(stringToInt("bndeiur"));
     } catch (IllegalArgumentException e){
@@ -12,7 +17,11 @@ public class stringToInt{
   public static int stringToInt(String s){
     //return the value of Integer.parseInt(s) but do it yourself!
     //Do not use any built in parse methods.
-
+    boolean flag = false;
+    if (s.charAt(0) == '-'){
+      flag = true;
+      s = s.substring(1);
+    }
     int ans = 0;
     String newS = "";
     for (int x = s.length() - 1; x >= 0; x --){
@@ -20,6 +29,9 @@ public class stringToInt{
     }
     for (int x = 0; x < newS.length(); x++){
       ans += valueOfDigit(newS.charAt(x)) * Math.pow(10, x);
+    }
+    if (flag){
+      return ans * -1;
     }
     return ans;
   }
