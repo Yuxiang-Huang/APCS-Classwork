@@ -2,10 +2,11 @@ import java.util.*;
 
 public class stringToInt{
   public static void main (String[] args){
-    System.out.println(stringToInt("324876576"));
-    System.out.println("324876576");
-    System.out.println(stringToInt("-324876576"));
-    System.out.println("-324876576");
+    System.out.println(stringToInt("324876576") == Integer.parseInt("324876576"));
+    System.out.println(stringToInt("-238747") == Integer.parseInt("-238747"));
+    System.out.println(stringToInt("7") == Integer.parseInt("7"));
+    System.out.println(stringToInt("-9") == Integer.parseInt("-9"));
+    System.out.println(stringToInt("0") == Integer.parseInt("0"));
 
     try{
       System.out.println(stringToInt("bndeiur"));
