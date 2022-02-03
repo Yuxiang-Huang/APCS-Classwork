@@ -1,18 +1,40 @@
+import java.util.*;
+
 public class stringToInt{
   public static void main (String[] args){
-    System.out.println(stringToInt("324876576"));
-    System.out.println(Integer.parseInt("324876576"));
+    // System.out.println(stringToInt("324876576") == Integer.parseInt("324876576"));
+    // System.out.println(stringToInt("-238747") == Integer.parseInt("-238747"));
+    // System.out.println(stringToInt("7") == Integer.parseInt("7"));
+    // System.out.println(stringToInt("-9") == Integer.parseInt("-9"));
+    // System.out.println(stringToInt("0") == Integer.parseInt("0"));
+
     try{
       System.out.println(stringToInt("bndeiur"));
     } catch (IllegalArgumentException e){
       System.out.println("nice catch");
+    }
+    for (int times = 0; times < 10; times ++){
+      String test = "";
+      if (Math.random() * 2 < 1){
+        test += "-";
+      }
+      for (int x = 0; x < 6; x ++){
+        test += (char) (int) (Math.random() * 10 + 48);
+      }
+      System.out.println(Integer.parseInt(test));
+      System.out.println(stringToInt(test));
+      System.out.println(Integer.parseInt(test) == stringToInt(test));
     }
   }
 
   public static int stringToInt(String s){
     //return the value of Integer.parseInt(s) but do it yourself!
     //Do not use any built in parse methods.
-
+    boolean flag = false;
+    if (s.charAt(0) == '-'){
+      flag = true;
+      s = s.substring(1);
+    }
     int ans = 0;
     String newS = "";
     for (int x = s.length() - 1; x >= 0; x --){
@@ -20,6 +42,9 @@ public class stringToInt{
     }
     for (int x = 0; x < newS.length(); x++){
       ans += valueOfDigit(newS.charAt(x)) * Math.pow(10, x);
+    }
+    if (flag){
+      return ans * -1;
     }
     return ans;
   }
